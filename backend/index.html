@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lexicon — Translate</title>
+  <meta name="description" content="A simple, accessible translation tool." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <section class="card" aria-labelledby="translator-heading">
+      <header class="card__header">
+        <p class="eyebrow">Say it in another language</p>
+        <h1 id="translator-heading">Lexicon</h1>
+      </header>
+
+      <form id="translator-form" novalidate>
+        <!-- Language direction bar -->
+        <div class="lang-bar">
+          <div class="lang-field">
+            <label for="source-lang">From</label>
+            <select id="source-lang" name="source-lang" aria-describedby="source-lang-hint"></select>
+            <span id="source-lang-hint" class="visually-hidden">Language of the text you're translating</span>
+          </div>
+
+          <button
+            type="button"
+            id="swap-langs-btn"
+            aria-label="Swap source and target languages"
+            title="Swap languages"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M7 7h11l-3-3M17 17H6l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <div class="lang-field">
+            <label for="target-lang">To</label>
+            <select id="target-lang" name="target-lang" aria-describedby="target-lang-hint"></select>
+            <span id="target-lang-hint" class="visually-hidden">Language to translate into</span>
+          </div>
+        </div>
+
+        <!-- Text panes -->
+        <div class="panes">
+          <div class="pane">
+            <div class="pane__label-row">
+              <label for="source-text">Original text</label>
+              <span id="char-count" class="char-count" aria-live="off">0 / 5000</span>
+            </div>
+            <textarea
+              id="source-text"
+              name="source-text"
+              maxlength="5000"
+              rows="8"
+              placeholder="Type or paste text to translate…"
+              aria-describedby="error-message"
+            ></textarea>
+          </div>
+
+          <div class="pane-divider" aria-hidden="true">
+            <span id="target-lang-tab" class="lang-tab">EN</span>
+          </div>
+
+          <div class="pane">
+            <label for="translated-text">Translation</label>
+            <textarea
+              id="translated-text"
+              name="translated-text"
+              rows="8"
+              readonly
+              aria-readonly="true"
+              placeholder="Your translation will appear here…"
+            ></textarea>
+          </div>
+        </div>
+
+        <div id="error-message" class="error-banner hidden" role="alert"></div>
+
+        <div class="actions">
+          <button type="submit" id="translate-btn">
+            <span class="btn-label">Translate</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Announced to assistive tech; not visually shown -->
+      <div id="status-message" role="status" aria-live="polite" class="visually-hidden"></div>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
